@@ -1,13 +1,38 @@
 const NPC = require('../models/npc');
+const Category = require('../models/category');
+const async = require('async');
 
 // Display list of all NPCs.
 exports.npc_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC list');
+    async.parallel({
+        npcs: function(callback) {
+            NPC.find()
+                .sort([['name', 'ascending']])
+                .exec(callback)
+        },
+        categories: function(callback) {
+            Category.find()
+                .exec(callback)
+        }
+    }, function(err, results) {
+        res.render('index', { title: 'Elden Ring NPC Guide', error: err, npc_list: results.npcs, category_list: results.categories });
+    });
 };
 
 // Display detail page for a specific NPC.
 exports.npc_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC detail: ' + req.params.id);
+    async.parallel({
+        npc: function(callback) {
+            NPC.findById(req.params.id)
+                .exec(callback)
+        },
+        categories: function(callback) {
+            Category.find()
+                .exec(callback)
+        }
+    }, function(err, results) {
+        res.render('npc_detail', { title: results.npc.name, error: err, npc: results.npc, category_list: results.categories });
+    });
 };
 
 // Display NPC create form on GET.

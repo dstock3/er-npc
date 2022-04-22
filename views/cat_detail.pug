@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+
+    div(class="sidebar")
+        ul(class="category-list")
+            for cat in category_list
+                li(class="category-item") 
+                    a(href="/npc" + cat.url) #{cat.name}
+  
+    main(class="cat-page")
+        for npc in npc_list
+            li(class="npc-item")
+                div 
+                    a(href=npc.url) #{npc.name}
+                div #{npc.desc}
+                div #{npc.category.name}
+                div #{npc.loc}
+                div #{npc.quote}
+                div #{npc.notes}
+

@@ -34,25 +34,25 @@ router.get('/', npc_controller.npc_list);
 // Category Routes
 
 // GET request for creating a Category. NOTE This must come before route that displays Categories (uses id).
-router.get('/category/create', cat_controller.cat_create_get);
+router.get('/cat/create', cat_controller.cat_create_get);
 
 //POST request for creating Category.
-router.post('/category/create', cat_controller.cat_create_post);
+router.post('/cat/create', cat_controller.cat_create_post);
 
 // GET request to delete Category.
-router.get('/category/:id/delete', cat_controller.cat_delete_get);
+router.get('/cat/:id/delete', cat_controller.cat_delete_get);
 
 // POST request to delete Category.
-router.post('/category/:id/delete', cat_controller.cat_delete_post);
+router.post('/cat/:id/delete', cat_controller.cat_delete_post);
 
 // GET request to update Category.
-router.get('/category/:id/update', cat_controller.cat_update_get);
+router.get('/cat/:id/update', cat_controller.cat_update_get);
 
 // POST request to update Category.
-router.post('/category/:id/update', cat_controller.cat_update_post);
+router.post('/cat/:id/update', cat_controller.cat_update_post);
 
 // GET request for one Category.
-router.get('/category/:id', cat_controller.cat_detail);
+router.get('/cat/:id', cat_controller.cat_detail);
 
 // GET request for list of all Categories.
 router.get('/categories', cat_controller.cat_list);

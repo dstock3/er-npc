@@ -1,13 +1,40 @@
 const Category = require('../models/category');
+const NPC = require('../models/npc');
+const async = require('async');
 
 // Display list of all Categories.
 exports.cat_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category list');
+    res.send('NOT IMPLEMENTED: Category List');
+
 };
 
 // Display detail page for a specific Category.
 exports.cat_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category detail: ' + req.params.id);
+    async.parallel({
+        category: function(callback) {
+            Category.findById(req.params.id)
+                .exec(callback)
+        },
+        npcs: function(callback) {
+            NPC.find()
+                .exec(callback)
+        },
+        categories: function(callback) {
+            Category.find()
+                .exec(callback)
+        }
+    }, function(err, results) {
+        let npcList = []
+
+        for (let i=0; i < results.npcs.length; i++) { 
+            if (JSON.stringify(results.npcs[i].category._id) === JSON.stringify(results.category._id)) {
+                console.log("result " + results.npcs[i])
+                npcList.push(results.npcs[i])
+            }
+        }
+
+        res.render('cat_detail', { title: results.category.name, error: err, npc_list: npcList, category: results.category, category_list: results.categories });
+    });
 };
 
 // Display Category create form on GET.
