@@ -7,11 +7,12 @@ block content
     ul(class="category-list")
       for cat in category_list
         li(class="category-item") 
-          a(href="#") #{cat.name}
+          a(href="/npc" + cat.url) #{cat.name}
 
   main(class="npc-detail")
     div #{npc.desc}
-    div #{npc.category.name}
+    div 
+      a(href=npc.category.url) #{npc.category.name}
     div(class="location-container")
         h3 Location
         div #{npc.loc}
