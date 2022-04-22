@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var npcRouter = require('./routes/npcs'); 
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/npc', npcRouter);  // Add npc routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
