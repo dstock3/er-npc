@@ -44,7 +44,7 @@ exports.npc_detail = function(req, res) {
 };
 
 // Display NPC create form on GET.
-exports.npc_create_get = function(req, res) {
+exports.npc_create_get = function(req, res, next) {
     Category.find()
         .exec(function(err, results) {
             res.render('npc_add', { title: "Add New NPC", error: err, category_list: results });
@@ -89,9 +89,10 @@ exports.npc_create_post = [
                     .populate('name')
                     .exec(function (err, list_categories) {
                         if (err) { return next(err); }
+                        console.log(npc.category)
     
                         for (let i = 0; i < list_categories.length; i++) {
-                            if (npc.category.indexOf(list_categories[i]._id) > -1) {
+                            if (JSON.stringify(npc.category).indexOf(list_categories[i]._id) > -1) {
                                 list_categories[i].checked = 'true';
                             }
                         }

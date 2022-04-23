@@ -23,8 +23,11 @@ block content
               label(for='name') NPC Name:
               input#name.form-control(type='text' placeholder='NPC Name' name='name' required='true' value=(undefined===npc ? '' : npc.name) )
             div(class="npc-form-subcontainer")
-              label(for='description') Description:
-              input#description.form-control(type='text' placeholder='NPC Description' name='description' required='true' value=(undefined===npc ? '' : npc.description))
+              label(for='desc') Description:
+              input#desc.form-control(type='text' placeholder='NPC Description' name='desc' required='true' value=(undefined===npc ? '' : npc.desc))
+            div(class="npc-form-subcontainer")
+              label(for='loc') Location:
+              input#loc.form-control(type='text' placeholder='NPC Location' name='loc' required='true' value=(undefined===npc ? '' : npc.loc))
 
           div.form-group(class="form-group-npc-quote")
             div(class="npc-form-subcontainer")
@@ -32,7 +35,7 @@ block content
               input#quote.form-control(type='text' placeholder='NPC Quote' name='quote' value=(undefined===npc ? '' : npc.quote) )
             div(class="npc-form-subcontainer")
               label(for='notes') Notes:
-              input#notes.form-control(type='text' placeholder='Notes' name='notes' required='true' value=(undefined===npc ? '' : npc.notes) )
+              input#notes.form-control(type='text' placeholder='Notes' name='notes' value=(undefined===npc ? '' : npc.notes) )
         div(class="form-main-subcontainer")
           div.form-group(class="form-group-npc-cat")
             label(class="npc-cat-label") Category:
