@@ -4,4 +4,19 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    header
+      a(href="/npc") Home
+    main
+      h1 #{title}
+      div(class="section-container")
+        div(class="sidebar")
+          ul(class="category-list")
+            for cat in category_list
+              li(class="category-item") 
+                a(href="/npc" + cat.url) #{cat.name}
+      
+        block content
+    footer
+      a(href="https://github.com/dstock3" target="_blank" rel="noopener noreferrer") Github
+      a(href="https://dstock.biz/" target="_blank" rel="noopener noreferrer") Portfolio
+      

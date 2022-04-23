@@ -1,15 +1,7 @@
 extends layout
 
 block content
-  h1= title
-  
-  div(class="sidebar")
-    ul(class="category-list")
-      for cat in category_list
-        li(class="category-item") 
-          a(href="/npc" + cat.url) #{cat.name}
-
-  main(class="npc-detail")
+  section(class="npc-detail")
     div #{npc.desc}
     div 
       a(href="/npc" + npc.category.url) #{npc.category.name}
