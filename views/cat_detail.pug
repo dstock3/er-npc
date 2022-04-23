@@ -10,13 +10,14 @@ block content
                     a(href="/npc" + cat.url) #{cat.name}
   
     main(class="cat-page")
-        for npc in npc_list
-            li(class="npc-item")
-                div 
-                    a(href=npc.url) #{npc.name}
-                div #{npc.desc}
-                div #{npc.category.name}
-                div #{npc.loc}
-                div #{npc.quote}
-                div #{npc.notes}
+        ul(class="npc-list")
+            for npc in npc_list
+                li(class="npc-item")
+                    div 
+                        a(href=npc.url) #{npc.name}
+                    div #{npc.desc}
+                    div #{npc.category.name}
+                    div #{npc.loc}
+                    div #{npc.quote}
+                    div #{npc.notes}
 

@@ -12,7 +12,7 @@ block content
   main(class="npc-detail")
     div #{npc.desc}
     div 
-      a(href=npc.category.url) #{npc.category.name}
+      a(href="/npc" + npc.category.url) #{npc.category.name}
     div(class="location-container")
         h3 Location
         div #{npc.loc}

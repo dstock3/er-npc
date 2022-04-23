@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var catSchema = new Schema(
   {
-    name: {type: String, required: true, maxLength: 100}
+    name: {type: String, required: true, minLength: 3, maxLength: 100}
   }
 );
 
@@ -16,4 +16,4 @@ catSchema
 });
 
 //Export model
-module.exports = mongoose.model('cat', catSchema);
+module.exports = mongoose.model('Category', catSchema);

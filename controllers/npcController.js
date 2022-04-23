@@ -15,6 +15,7 @@ exports.npc_list = function(req, res) {
                 .exec(callback)
         }
     }, function(err, results) {
+        console.log(results.categories)
         res.render('index', { title: 'Elden Ring NPC Guide', error: err, npc_list: results.npcs, category_list: results.categories });
     });
 };
@@ -23,15 +24,21 @@ exports.npc_list = function(req, res) {
 exports.npc_detail = function(req, res) {
     async.parallel({
         npc: function(callback) {
-            NPC.findById(req.params.id)
+            NPC.findById(req.params.id, 'name desc category loc quote notes')
+                .populate('name')
+                .populate('desc')
+                .populate('category')
+                .populate('loc')
+                .populate('quote')
+                .populate('notes')
                 .exec(callback)
         },
-        categories: function(callback) {
-            Category.find()
+        category: function(callback) {
+            Category.find({ 'category': req.params.id },'name')
                 .exec(callback)
         }
     }, function(err, results) {
-        res.render('npc_detail', { title: results.npc.name, error: err, npc: results.npc, category_list: results.categories });
+        res.render('npc_detail', { title: results.npc.name, error: err, npc: results.npc, category_list: results.category });
     });
 };
 

@@ -28,7 +28,6 @@ exports.cat_detail = function(req, res) {
 
         for (let i=0; i < results.npcs.length; i++) { 
             if (JSON.stringify(results.npcs[i].category._id) === JSON.stringify(results.category._id)) {
-                console.log("result " + results.npcs[i])
                 npcList.push(results.npcs[i])
             }
         }
