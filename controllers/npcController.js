@@ -47,7 +47,7 @@ exports.npc_detail = function(req, res) {
 exports.npc_create_get = function(req, res) {
     Category.find()
         .exec(function(err, results) {
-            res.render('npc_create', { title: "Create New NPC", error: err, category_list: results });
+            res.render('npc_add', { title: "Add New NPC", error: err, category_list: results });
         })
 };
 
@@ -95,7 +95,7 @@ exports.npc_create_post = [
                                 list_categories[i].checked = 'true';
                             }
                         }
-                        res.render('npc_create', { title: 'Create NPC', category_list: list_categories, npc: npc, errors: errors.array() })
+                        res.render('npc_add', { title: "Add New NPC", category_list: list_categories, npc: npc, errors: errors.array() })
                     })
             } else {
                 npc.save(function (err) {

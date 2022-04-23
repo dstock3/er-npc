@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  div(class="npc-form-container")
+    form(method='POST' action='')
+      h2(class="form-title") #{title}
+      div(class="form-container")
+        if title==="Update NPC"
+          div(class="line-item")
+              h2(class="npc-head") #{npc.name}
+              if npc.image
+                  div(class="npc-img-container")
+                      img(class="npc-pic" alt="pic of " + npc.name src='/images/' + npc.image)
+              p #{npc.desc}
+              p #{npc.quote}
+              p #{npc.notes}
+
+              a(href=npc.category.url) #{npc.category.name}
+              a(href=npc.url + "/delete") Delete NPC
+        div(class="form-main-subcontainer")
+          div.form-group(class="form-group-npc-name")
+            div(class="npc-form-subcontainer")
+              label(for='name') NPC Name:
+              input#name.form-control(type='text' placeholder='NPC Name' name='name' required='true' value=(undefined===npc ? '' : npc.name) )
+            div(class="npc-form-subcontainer")
+              label(for='description') Description:
+              input#description.form-control(type='text' placeholder='NPC Description' name='description' required='true' value=(undefined===npc ? '' : npc.description))
+
+          div.form-group(class="form-group-npc-quote")
+            div(class="npc-form-subcontainer")
+              label(for='quote') Quote:
+              input#quote.form-control(type='text' placeholder='NPC Quote' name='quote' value=(undefined===npc ? '' : npc.quote) )
+            div(class="npc-form-subcontainer")
+              label(for='notes') Notes:
+              input#notes.form-control(type='text' placeholder='Notes' name='notes' required='true' value=(undefined===npc ? '' : npc.notes) )
+        div(class="form-main-subcontainer")
+          div.form-group(class="form-group-npc-cat")
+            label(class="npc-cat-label") Category:
+            div(class="cat-checkbox-container")
+              if categories
+                for category in categories
+                  div(class="cat-checkbox" style='display: inline; padding-right:10px;')
+                    input.checkbox-input(type='checkbox', name='category', id=category._id, value=category._id, checked=category.checked )
+                    label(for=category._id) #{category.name}
+              else
+                for category in category_list
+                  div(class="cat-checkbox" style='display: inline; padding-right:10px;')
+                    input.checkbox-input(type='checkbox', name='category', id=category._id, value=category._id, checked=category.checked )
+                    label(for=category._id) #{category.name}
+        //-    
+          div.form-group(class="form-group-npc-img-upload")
+            label(class="upload-image-label") Upload Image
+            if title==="Update NPC"
+              if npc.image
+                div(class="image-prompt") There is already an image associated with this NPC: 
+                  span(class="image-filename") #{npc.image}. 
+                  span Would you like to choose a new one?
+            input#image.form-control(class="upload-image-input" type="file" name="image")
+        //
+      button(class="submit-btn" type='submit') Submit
+    if errors
+      ul
+        for error in errors
+          li!= error.msg
