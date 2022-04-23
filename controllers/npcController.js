@@ -44,13 +44,18 @@ exports.npc_detail = function(req, res) {
 
 // Display NPC create form on GET.
 exports.npc_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC create GET');
+    Category.find()
+        .exec(function(err, results) {
+            res.render('npc_create', { title: "Create New NPC", error: err, category_list: results });
+
+        })
 };
 
 // Handle NPC create on POST.
-exports.npc_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC create POST');
-};
+exports.npc_create_post = function(req, res) [
+
+    
+];
 
 // Display NPC delete form on GET.
 exports.npc_delete_get = function(req, res) {
