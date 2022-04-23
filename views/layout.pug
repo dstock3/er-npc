@@ -10,6 +10,9 @@ html
       h1 #{title}
       div(class="section-container")
         div(class="sidebar")
+          ul(class="control-panel")
+            a(href="/npc/create") Add New NPC
+            a(href="/npc/cat/create") Add New Category
           ul(class="category-list")
             for cat in category_list
               li(class="category-item") 

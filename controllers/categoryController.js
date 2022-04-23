@@ -37,8 +37,11 @@ exports.cat_detail = function(req, res) {
 };
 
 // Display Category create form on GET.
-exports.cat_create_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category create GET');
+exports.cat_create_get = function(req, res, next) {
+    Category.find()
+        .exec(function(err, results) {
+            res.render('cat_add', { title: "Add New Category", error: err, category_list: results });
+        })
 };
 
 // Handle Category create on POST.
