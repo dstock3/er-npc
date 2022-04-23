@@ -1,6 +1,7 @@
 const NPC = require('../models/npc');
 const Category = require('../models/category');
 const async = require('async');
+const { body,validationResult } = require("express-validator");
 
 // Display list of all NPCs.
 exports.npc_list = function(req, res) {
@@ -47,14 +48,62 @@ exports.npc_create_get = function(req, res) {
     Category.find()
         .exec(function(err, results) {
             res.render('npc_create', { title: "Create New NPC", error: err, category_list: results });
-
         })
 };
 
 // Handle NPC create on POST.
-exports.npc_create_post = function(req, res) [
+exports.npc_create_post = [
+        //convert categories to array
 
+        (req, res, next) => {
+            if(!(req.body.category instanceof Array)){
+                if(typeof req.body.category ==='undefined')
+                req.body.category = [];
+                else
+                req.body.category = new Array(req.body.category);
+            }
+            next();
+        },
+
+        //form validation
+        body('name', 'NPC name required').trim().isLength({ min: 1 }).escape(),
+        body('desc', 'NPC description must not be empty.').trim().isLength({ min: 1 }).escape(),
+        body('category', 'NPC category must not be empty.').trim().isLength({ min: 1 }).escape(),
+        body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
+
+        (req, res, next) => {
+            const errors = validationResult(req);
+
+            //create new NPC object with the trimmed form data
+            let npc = new NPC({ 
+                name: req.body.name,
+                desc: req.body.desc,
+                category: req.body.category,
+                loc: req.body.loc,
+                quote: req.body.quote,
+                notes: req.body.notes
+            });
+
+            if (!errors.isEmpty()) {
+                Category.find()
+                    .populate('name')
+                    .exec(function (err, list_categories) {
+                        if (err) { return next(err); }
     
+                        for (let i = 0; i < list_categories.length; i++) {
+                            if (npc.category.indexOf(list_categories[i]._id) > -1) {
+                                list_categories[i].checked = 'true';
+                            }
+                        }
+                        res.render('npc_create', { title: 'Create NPC', category_list: list_categories, npc: npc, errors: errors.array() })
+                    })
+            } else {
+                npc.save(function (err) {
+                    if (err) { return next(err); }
+                    res.redirect(npc.url);
+                });
+            }
+        }
 ];
 
 // Display NPC delete form on GET.
