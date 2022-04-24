@@ -18,7 +18,7 @@ html
           ul(class="category-list")
             for cat in category_list
               li(class="category-item") 
-                a(href="/npc" + cat.url) #{cat.name}
+                a(href=cat.url) #{cat.name}
       
         block content
     footer
