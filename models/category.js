@@ -12,7 +12,7 @@ var catSchema = new Schema(
 catSchema
 .virtual('url')
 .get(function () {
-  return '/cat/' + this._id;
+  return '/npc/cat/' + this._id;
 });
 
 //Export model

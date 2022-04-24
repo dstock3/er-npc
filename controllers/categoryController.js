@@ -1,6 +1,7 @@
 const Category = require('../models/category');
 const NPC = require('../models/npc');
 const async = require('async');
+const { body,validationResult } = require("express-validator");
 
 // Display list of all Categories.
 exports.cat_list = function(req, res) {
@@ -45,9 +46,31 @@ exports.cat_create_get = function(req, res, next) {
 };
 
 // Handle Category create on POST.
-exports.cat_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category create POST');
-};
+exports.cat_create_post = [
+    body('name', 'Category name required').trim().isLength({ min: 1 }).escape(),
+    
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        let category = new Category({
+            name: req.body.name,
+        });
+
+        if (!errors.isEmpty()) {
+            Category.find()
+                .populate('name')
+                .exec(function (err, results) {
+                    if (err) { return next(err); }
+                    res.render('cat_add', { title: "Add New Category", category_list: results, errors: errors.array() });
+                })
+        } else {
+            category.save(function(err) {
+                if (err) { return next(err); }
+                res.redirect(category.url);
+            });
+        }
+    }
+];
 
 // Display Category delete form on GET.
 exports.cat_delete_get = function(req, res) {

@@ -2,14 +2,15 @@ extends layout
 
 block content
     section(class="cat-page")
-        ul(class="npc-list")
-            for npc in npc_list
-                li(class="npc-item")
-                    div 
-                        a(href=npc.url) #{npc.name}
-                    div #{npc.desc}
-                    div #{npc.category.name}
-                    div #{npc.loc}
-                    div #{npc.quote}
-                    div #{npc.notes}
+        if npc
+            ul(class="npc-list")
+                for npc in npc_list
+                    li(class="npc-item")
+                        div 
+                            a(href=npc.url) #{npc.name}
+                        div #{npc.desc}
+                        div #{npc.category.name}
+                        div #{npc.loc}
+                        div #{npc.quote}
+                        div #{npc.notes}
 
