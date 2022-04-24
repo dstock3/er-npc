@@ -132,6 +132,5 @@ exports.cat_update_post = [
         res.send('NOT IMPLEMENTED');
 
     }
-    
 
 ];
