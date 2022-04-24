@@ -4,10 +4,12 @@ block content
   section(class="npc-detail")
     div #{npc.desc}
     div 
-      a(href="/npc" + npc.category.url) #{npc.category.name}
+      a(href=npc.category.url) #{npc.category.name}
     div(class="location-container")
         h3 Location
         div #{npc.loc}
     div #{npc.quote}
     div #{npc.notes}
+    div
+      a(href="/npc/" + npc._id + "/delete") Delete NPC
   

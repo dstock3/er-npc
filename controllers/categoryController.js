@@ -73,21 +73,65 @@ exports.cat_create_post = [
 ];
 
 // Display Category delete form on GET.
-exports.cat_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category delete GET');
+exports.cat_delete_get = function(req, res, next) {
+    async.parallel({
+        category: function(callback) {
+            Category.findById(req.params.id, 'name')
+                .populate('name')
+                .exec(callback) 
+        },
+        list_categories: function(callback) {
+            Category.find({}, 'name')
+                .populate('name')
+                .exec(callback)
+        },
+        list_npcs: function(callback) {
+            NPC.find({}, 'name category')
+                .populate('name')
+                .populate('category')
+                .exec(callback)
+        }
+    }, function(err, results) {
+        if (err) { return next(err); }
+        let relNpcs = []
+        for (let i = 0; i < results.list_npcs.length; i++) {
+            if (results.list_npcs[i].category.name === results.category.name) {
+                relNpcs.push(results.list_npcs[i])
+            }
+        }
+        res.render('cat_delete', { title: 'Delete Category', category: results.category, category_list: results.list_categories, npcs: relNpcs })
+    })
 };
 
 // Handle Category delete on POST.
-exports.cat_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category delete POST');
+exports.cat_delete_post = function(req, res, next) {
+    Category.findById(req.body.catid)
+        .exec(function(err, results) {
+            if (err) { return next(err); }
+            // Success
+            else {
+                // Delete item and redirect to the list of npcs.
+                Category.findByIdAndRemove(req.body.catid, function deleteCat (err) {
+                    if (err) { return next(err); }
+                    // Success - go to npc list
+                    res.redirect('/npc')
+                })
+            }
+        })
 };
 
 // Display Category update form on GET.
-exports.cat_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category update GET');
+exports.cat_update_get = function(req, res, next) {
+    res.send('NOT IMPLEMENTED');
+
 };
 
 // Handle Category update on POST.
-exports.cat_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category update POST');
-};
+exports.cat_update_post = [
+    (req, res, next) => {
+        res.send('NOT IMPLEMENTED');
+
+    }
+    
+
+];
