@@ -122,15 +122,63 @@ exports.cat_delete_post = function(req, res, next) {
 
 // Display Category update form on GET.
 exports.cat_update_get = function(req, res, next) {
-    res.send('NOT IMPLEMENTED');
+    async.parallel({
+        category: function(callback) {
+            Category.findById(req.params.id, 'name')
+                .populate('name')
+                .exec(callback) 
+        },
+        list_categories: function(callback) {
+            Category.find({}, 'name')
+                .populate('name')
+                .exec(callback)
+        },
+        list_npcs: function(callback) {
+            NPC.find({}, 'name category')
+                .populate('name')
+                .populate('category')
+                .exec(callback)
+        }
+    }, function(err, results) {
+        if (err) { return next(err); }
+        let relNpcs = []
+        for (let i = 0; i < results.list_npcs.length; i++) {
+            if (results.list_npcs[i].category.name === results.category.name) {
+                relNpcs.push(results.list_npcs[i])
+            }
+        }
+        res.render('cat_add', { title: 'Update Category', category: results.category, category_list: results.list_categories, npcs: relNpcs })
+    })
 
 };
 
 // Handle Category update on POST.
 exports.cat_update_post = [
-    (req, res, next) => {
-        res.send('NOT IMPLEMENTED');
+    body('name', 'Category name required').trim().isLength({ min: 1 }).escape(),
 
+    (req, res, next) => {
+        const errors = validationResult(req);
+
+        let category = new Category({ 
+            name: req.body.name,
+            _id:req.params.id
+        });
+
+        if (!errors.isEmpty()) {
+            Category.find()
+                .populate('name')
+                .exec(function (err, list_categories) {
+                    if (err) { return next(err); }
+                    res.render('cat_add', { title: 'Update Category', category_list: list_categories })
+                })
+        } else {
+            // Data from form is valid. Update the record.
+            Category.findByIdAndUpdate(req.params.id, category, {}, function (err,thiscat) {
+                if (err) { return next(err); }
+                   // Successful - redirect to item detail page.
+                   res.redirect(thiscat.url);
+                });
+        }
     }
 
 ];

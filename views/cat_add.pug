@@ -2,6 +2,12 @@ extends layout
 
 block content
   div(class="cat-form-container")
+    if npcs.length > 0
+      p(class="cat-msg warning") The following NPCs will be updated.
+      ul
+        for npc in npcs
+          li 
+            a(href=npc.url) #{npc.name}
     form(method='POST' action='')
         label(for='name') Category Name:
         input#name.form-control(type='text' placeholder='Category Name' name='name' required='true' value=(undefined===cat ? '' : cat.name) )
