@@ -111,10 +111,11 @@ exports.npc_create_post = [
 exports.npc_delete_get = function(req, res) {
     async.parallel({
         npc: function(callback) {
-            NPC.findById(req.params.id, 'name desc category quote notes')
+            NPC.findById(req.params.id, 'name desc category loc quote notes')
                 .populate('name')
                 .populate('desc')
                 .populate('category')
+                .populate('loc') 
                 .populate('quote')
                 .populate('notes')
                 .exec(callback)
