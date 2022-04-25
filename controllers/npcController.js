@@ -109,7 +109,28 @@ exports.npc_create_post = [
 
 // Display NPC delete form on GET.
 exports.npc_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC delete GET');
+    async.parallel({
+        npc: function(callback) {
+            NPC.findById(req.params.id, 'name desc category quote notes')
+                .populate('name')
+                .populate('desc')
+                .populate('category')
+                .populate('quote')
+                .populate('notes')
+                .exec(callback)
+        },
+        category: function(callback) {
+            Category.find({ 'category': req.params.id },'name')
+                .exec(callback)
+        }
+    }, function(err, results) {
+        if (err) { return next(err); }
+        if (results.npc==null) { // No results.
+            res.redirect('/npc');
+        }
+        // Successful, so render.
+        res.render('npc_delete', { title: 'Delete NPC', item: results.npc, category_list: results.category } );
+    });
 };
 
 // Handle NPC delete on POST.

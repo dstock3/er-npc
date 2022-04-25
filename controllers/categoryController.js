@@ -3,12 +3,6 @@ const NPC = require('../models/npc');
 const async = require('async');
 const { body,validationResult } = require("express-validator");
 
-// Display list of all Categories.
-exports.cat_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Category List');
-
-};
-
 // Display detail page for a specific Category.
 exports.cat_detail = function(req, res) {
     async.parallel({

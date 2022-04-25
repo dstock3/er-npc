@@ -54,7 +54,4 @@ router.post('/cat/:id/update', cat_controller.cat_update_post);
 // GET request for one Category.
 router.get('/cat/:id', cat_controller.cat_detail);
 
-// GET request for list of all Categories.
-router.get('/categories', cat_controller.cat_list);
-
 module.exports = router;
