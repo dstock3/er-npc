@@ -129,14 +129,22 @@ exports.npc_delete_get = function(req, res) {
         if (results.npc==null) { // No results.
             res.redirect('/npc');
         }
-        // Successful, so render.
-        res.render('npc_delete', { title: 'Delete NPC', item: results.npc, category_list: results.category } );
+        res.render('npc_delete', { title: 'Delete NPC', npc: results.npc, category_list: results.category } );
     });
 };
 
 // Handle NPC delete on POST.
 exports.npc_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC delete POST');
+    NPC.findById(req.body.npcid)
+        .exec(function(err, results) {
+            if (err) { return next(err); }
+            else {
+                NPC.findByIdAndRemove(req.body.npcid, function deleteNpc (err) {
+                    if (err) { return next(err); }
+                    res.redirect('/npc')
+                });
+            }
+    });
 };
 
 // Display NPC update form on GET.
