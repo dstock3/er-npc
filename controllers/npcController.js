@@ -181,6 +181,71 @@ exports.npc_update_get = function(req, res, next) {
 };
 
 // Handle NPC update on POST.
-exports.npc_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC update POST');
-};
+exports.npc_update_post = [
+    (req, res, next) => {
+        if(!(req.body.category instanceof Array)){
+            if(typeof req.body.category==='undefined')
+            req.body.category=[];
+            else
+            req.body.category=new Array(req.body.category);
+        }
+        next();
+    },
+
+    body('name', 'NPC name required').trim().isLength({ min: 1 }).escape(),
+    body('desc', 'NPC description must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('category', 'NPC category must not be empty.').trim().isLength({ min: 1 }).escape(),
+    body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
+
+    (req, res, next) => {
+        let npc
+        if (req.file) {
+            imageFilename = req.file.originalname
+
+            npc = new NPC({ 
+                name: req.body.name,
+                desc: req.body.desc,
+                category: (typeof req.body.category==='undefined') ? [] : req.body.category,
+                loc: req.body.loc,
+                quote: req.body.quote,
+                image: req.file.originalname,
+                notes: req.body.notes,
+                _id:req.params.id 
+            });
+        } else {
+            npc = new NPC({ 
+                name: req.body.name,
+                desc: req.body.desc,
+                category: (typeof req.body.category==='undefined') ? [] : req.body.category,
+                loc: req.body.loc,
+                quote: req.body.quote,
+                notes: req.body.notes,
+                _id:req.params.id 
+            });
+
+        }
+
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            Category.find()
+                .populate('name')
+                .exec(function (err, list_categories) {
+                    if (err) { return next(err); }
+
+                    for (let i = 0; i < list_categories.length; i++) {
+                        if (JSON.stringify(npc.category).indexOf(list_categories[i]._id) > -1) {
+                            list_categories[i].checked = 'true';
+                        }
+                    }
+                    res.render('npc_add', { title: 'Update NPC', category_list: list_categories, npc: npc, errors: errors.array() })
+                })
+        }
+        else {
+            NPC.findByIdAndUpdate(req.params.id, npc, {}, function (err,thisnpc) {
+                if (err) { return next(err); }
+                   res.redirect(thisnpc.url);
+                });
+        }
+    }
+];

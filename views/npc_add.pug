@@ -3,7 +3,6 @@ extends layout
 block content
   div(class="npc-form-container")
     form(method='POST' action='')
-
       div(class="form-container")
         if title==="Update NPC"
           div(class="line-item")
@@ -12,7 +11,7 @@ block content
                   div(class="npc-img-container")
                       img(class="npc-pic" alt="pic of " + npc.name src='/images/' + npc.image)
               p #{npc.desc}
-              p #{npc.quote}
+              p "#{npc.quote}"
               p #{npc.notes}
 
               a(href=npc.category.url) #{npc.category.name}
