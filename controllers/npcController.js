@@ -53,8 +53,6 @@ exports.npc_create_get = function(req, res, next) {
 
 // Handle NPC create on POST.
 exports.npc_create_post = [
-        //convert categories to array
-
         (req, res, next) => {
             if(!(req.body.category instanceof Array)){
                 if(typeof req.body.category ==='undefined')
@@ -65,7 +63,6 @@ exports.npc_create_post = [
             next();
         },
 
-        //form validation
         body('name', 'NPC name required').trim().isLength({ min: 1 }).escape(),
         body('desc', 'NPC description must not be empty.').trim().isLength({ min: 1 }).escape(),
         body('category', 'NPC category must not be empty.').trim().isLength({ min: 1 }).escape(),
@@ -74,7 +71,6 @@ exports.npc_create_post = [
         (req, res, next) => {
             const errors = validationResult(req);
 
-            //create new NPC object with the trimmed form data
             let npc = new NPC({ 
                 name: req.body.name,
                 desc: req.body.desc,
@@ -126,7 +122,7 @@ exports.npc_delete_get = function(req, res) {
         }
     }, function(err, results) {
         if (err) { return next(err); }
-        if (results.npc==null) { // No results.
+        if (results.npc==null) {
             res.redirect('/npc');
         }
         res.render('npc_delete', { title: 'Delete NPC', npc: results.npc, category_list: results.category } );
@@ -148,8 +144,40 @@ exports.npc_delete_post = function(req, res) {
 };
 
 // Display NPC update form on GET.
-exports.npc_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: NPC update GET');
+exports.npc_update_get = function(req, res, next) {
+    async.parallel({
+        npc: function(callback) {
+            NPC.findById(req.params.id, 'name desc category loc quote notes')
+                .populate('name')
+                .populate('desc')
+                .populate('category')
+                .populate('loc') 
+                .populate('quote')
+                .populate('notes')
+                .exec(callback)
+        },
+        category: function(callback) {
+            Category.find({ 'category': req.params.id },'name')
+                .exec(callback)
+        },
+        categories: function(callback) {
+            Category.find(callback);
+        }
+    }, function(err, results) {
+            if (err) { return next(err); }
+            if (results.npc==null) {
+                var err = new Error('NPC not found');
+                err.status = 404;
+                return next(err);
+            }
+
+            for (let allCategoryIterations = 0; allCategoryIterations < results.categories.length; allCategoryIterations++) {          
+                if (results.categories[allCategoryIterations]._id.toString()===results.npc.category._id.toString()) {
+                    results.categories[allCategoryIterations].checked='true';
+                }
+            }
+            res.render('npc_add', { title: 'Update NPC', npc: results.npc, categories: results.categories, category_list: results.category });
+    })
 };
 
 // Handle NPC update on POST.
