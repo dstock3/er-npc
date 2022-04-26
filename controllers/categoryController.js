@@ -35,6 +35,7 @@ exports.cat_detail = function(req, res) {
 exports.cat_create_get = function(req, res, next) {
     Category.find()
         .exec(function(err, results) {
+            console.log(results)
             res.render('cat_add', { title: "Add New Category", error: err, category_list: results });
         })
 };

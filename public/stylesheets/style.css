@@ -1,8 +1,14 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+header {
+  display: flex;
+  height: 150px;
 }
 
-a {
-  color: #00B7FF;
+.home-link {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 25px;
+  height: 50px;
 }

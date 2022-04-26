@@ -2,10 +2,12 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/reset.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     header
-      a(href="/npc") Home
+      a(href="/npc" class="home-link")
+        img(src="/images/ER-title.webp" class="logo")
     main
       h1 #{title}
       div(class="section-container")
