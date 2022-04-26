@@ -15,6 +15,7 @@ a {
 
 header {
   display: flex;
+  justify-content: space-between;
   height: 125px;
 }
 
@@ -26,6 +27,15 @@ header {
 .home-link {
   display: flex;
   align-items: center;
+  width: 25%;
+}
+
+.title {
+  font-size: 1.25em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
 }
 
 .logo {
@@ -57,11 +67,6 @@ header {
 }
 
 .npc-name {
-  margin-bottom: 15px;
-}
-
-h1 {
-  text-align: center;
   margin-bottom: 15px;
 }
 
