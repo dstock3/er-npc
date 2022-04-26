@@ -18,6 +18,11 @@ header {
   height: 125px;
 }
 
+.section-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .home-link {
   display: flex;
   align-items: center;
@@ -26,12 +31,55 @@ header {
 .logo {
   margin-left: 15px;
   height: 50px;
+  filter: drop-shadow(5px 5px 5px #000000);
+}
+
+.sidebar, .npc-main, .cat-page, .npc-detail {
+  background-color: rgba(0, 0, 0, 0.53);
+}
+
+.npc-main, .cat-page, .npc-detail {
+  width: 75%;
 }
 
 .sidebar {
-  background-color: rgba(0, 0, 0, 0.289);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 15px;
+  width: 22%;
+  border-radius: 5px;
 }
 
-.npc-main {
-  background-color: rgba(0, 0, 0, 0.289);
+.npc-item {
+  margin-bottom: 15px;
+  width: 85%;
+}
+
+.npc-name {
+  margin-bottom: 15px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+footer {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+.social-container {
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
+}
+
+.attr {
+  margin-bottom: 15px;
 }

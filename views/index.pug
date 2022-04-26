@@ -5,7 +5,7 @@ block content
     ul(class="npc-list")
       for npc in npc_list
         li(class="npc-item")
-          div 
+          div(class="npc-name") 
             a(href=npc.url) #{npc.name}
           div #{npc.desc}
           div #{npc.category.name}
