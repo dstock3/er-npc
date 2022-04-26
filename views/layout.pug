@@ -10,7 +10,6 @@ html
         img(src="/images/ER-title.webp" class="logo")
       h1(class="title") #{title}
     main
-      
       div(class="section-container")
         div(class="sidebar")
           div(class="cat-container")
@@ -19,7 +18,6 @@ html
               for cat in category_list
                 li(class="category-item") 
                   a(href=cat.url) #{cat.name}
-
           div(class="control-container")
             h2(class="sidebar-head") Control Panel
             ul(class="control-panel")
@@ -27,8 +25,6 @@ html
                 a(href="/npc/create") Add New NPC
               li(class="control-option")
                 a(href="/npc/cat/create") Add New Category
-
-      
         block content
     footer
       div(class="attr") Created by David Stockdale

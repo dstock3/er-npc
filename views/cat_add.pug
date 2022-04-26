@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(class="cat-form-container")
-    if npcs.length > 0
+    if title==='Update Category' && npcs.length > 0
       p(class="cat-msg warning") The following NPCs will be updated.
       ul
         for npc in npcs
