@@ -22,6 +22,7 @@ header {
 .section-container {
   display: flex;
   justify-content: space-between;
+  margin-right: 5%;
 }
 
 .home-link {
@@ -31,11 +32,12 @@ header {
 }
 
 .title {
-  font-size: 1.25em;
+  font-size: 1.75em;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 75%;
+  margin-right: 15%;
 }
 
 .logo {
@@ -45,7 +47,7 @@ header {
 }
 
 .sidebar, .npc-main, .cat-page, .npc-detail {
-  background-color: rgba(0, 0, 0, 0.53);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .npc-main, .cat-page, .npc-detail {
@@ -58,11 +60,33 @@ header {
   align-items: center;
   margin-left: 15px;
   width: 22%;
+  height: fit-content;
   border-radius: 5px;
 }
 
-.npc-item {
+.sidebar-head {
+  font-size: 1.5em;
+  text-decoration: underline;
   margin-bottom: 15px;
+}
+
+.cat-container, .control-container {
+  margin-top: 15px;
+  width: 75%;
+}
+
+.control-container {
+  margin-bottom: 15px;
+}
+
+.category-item, .control-option {
+  margin-bottom: 5px;
+  font-size: 1.25em;
+}
+
+.npc-item {
+  margin-left: 15px;
+  margin-top: 15px;
   width: 85%;
 }
 
@@ -82,7 +106,7 @@ footer {
 .social-container {
   display: flex;
   justify-content: space-between;
-  width: 15%;
+  width: 10%;
 }
 
 .attr {
