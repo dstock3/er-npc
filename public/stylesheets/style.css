@@ -1,6 +1,21 @@
+body {
+  background: rgb(0,46,35);
+  background: -moz-linear-gradient(0deg, rgba(0,46,35,1) 0%, rgba(0,60,84,1) 66%);
+  background: -webkit-linear-gradient(0deg, rgba(0,46,35,1) 0%, rgba(0,60,84,1) 66%);
+  background: linear-gradient(0deg, rgba(0,46,35,1) 0%, rgba(0,60,84,1) 66%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#002e23",endColorstr="#003c54",GradientType=1);
+  color: white;
+}
+
+a {
+  color: rgb(208, 0, 255);
+  font-weight: bold;
+  text-decoration: none;
+}
+
 header {
   display: flex;
-  height: 150px;
+  height: 125px;
 }
 
 .home-link {
@@ -9,6 +24,14 @@ header {
 }
 
 .logo {
-  margin-left: 25px;
+  margin-left: 15px;
   height: 50px;
+}
+
+.sidebar {
+  background-color: rgba(0, 0, 0, 0.289);
+}
+
+.npc-main {
+  background-color: rgba(0, 0, 0, 0.289);
 }
