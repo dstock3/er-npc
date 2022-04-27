@@ -27,7 +27,7 @@ exports.cat_detail = function(req, res) {
             }
         }
 
-        res.render('cat_detail', { title: results.category.name, error: err, npc_list: npcList, category: results.category, category_list: results.categories });
+        res.render('cat_detail', { title: results.category.name + " | Elden Ring NPC Guide", error: err, npc_list: npcList, category: results.category, category_list: results.categories });
     });
 };
 
@@ -35,7 +35,7 @@ exports.cat_detail = function(req, res) {
 exports.cat_create_get = function(req, res, next) {
     Category.find()
         .exec(function(err, results) {
-            res.render('cat_add', { title: "Add New Category", error: err, category_list: results });
+            res.render('cat_add', { title: "Add New Category | Elden Ring NPC Guide", error: err, category_list: results });
         })
 };
 
@@ -55,7 +55,7 @@ exports.cat_create_post = [
                 .populate('name')
                 .exec(function (err, results) {
                     if (err) { return next(err); }
-                    res.render('cat_add', { title: "Add New Category", category_list: results, errors: errors.array() });
+                    res.render('cat_add', { title: "Add New Category | Elden Ring NPC Guide", category_list: results, errors: errors.array() });
                 })
         } else {
             category.save(function(err) {
@@ -93,7 +93,7 @@ exports.cat_delete_get = function(req, res, next) {
                 relNpcs.push(results.list_npcs[i])
             }
         }
-        res.render('cat_delete', { title: 'Delete Category', category: results.category, category_list: results.list_categories, npcs: relNpcs })
+        res.render('cat_delete', { title: 'Delete Category | Elden Ring NPC Guide', category: results.category, category_list: results.list_categories, npcs: relNpcs })
     })
 };
 
@@ -141,7 +141,7 @@ exports.cat_update_get = function(req, res, next) {
                 relNpcs.push(results.list_npcs[i])
             }
         }
-        res.render('cat_add', { title: 'Update Category', category: results.category, category_list: results.list_categories, npcs: relNpcs })
+        res.render('cat_add', { title: 'Update Category | Elden Ring NPC Guide', category: results.category, category_list: results.list_categories, npcs: relNpcs })
     })
 
 };

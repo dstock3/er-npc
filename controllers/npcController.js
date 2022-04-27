@@ -17,7 +17,7 @@ exports.npc_list = function(req, res) {
         }
     }, function(err, results) {
         console.log(results.categories)
-        res.render('index', { title: 'NPC Guide', error: err, npc_list: results.npcs, category_list: results.categories });
+        res.render('index', { title: 'Elden Ring NPC Guide', error: err, npc_list: results.npcs, category_list: results.categories });
     });
 };
 
@@ -39,7 +39,7 @@ exports.npc_detail = function(req, res) {
                 .exec(callback)
         }
     }, function(err, results) {
-        res.render('npc_detail', { title: results.npc.name, error: err, npc: results.npc, category_list: results.category });
+        res.render('npc_detail', { title: results.npc.name + " | Elden Ring NPC Guide", error: err, npc: results.npc, category_list: results.category });
     });
 };
 
@@ -47,7 +47,7 @@ exports.npc_detail = function(req, res) {
 exports.npc_create_get = function(req, res, next) {
     Category.find()
         .exec(function(err, results) {
-            res.render('npc_add', { title: "Add New NPC", error: err, category_list: results });
+            res.render('npc_add', { title: "Add New NPC | Elden Ring NPC Guide", error: err, category_list: results });
         })
 };
 
@@ -92,7 +92,7 @@ exports.npc_create_post = [
                                 list_categories[i].checked = 'true';
                             }
                         }
-                        res.render('npc_add', { title: "Add New NPC", category_list: list_categories, npc: npc, errors: errors.array() })
+                        res.render('npc_add', { title: "Add New NPC | Elden Ring NPC Guide", category_list: list_categories, npc: npc, errors: errors.array() })
                     })
             } else {
                 npc.save(function (err) {
@@ -125,7 +125,7 @@ exports.npc_delete_get = function(req, res) {
         if (results.npc==null) {
             res.redirect('/npc');
         }
-        res.render('npc_delete', { title: 'Delete NPC', npc: results.npc, category_list: results.category } );
+        res.render('npc_delete', { title: 'Delete NPC | Elden Ring NPC Guide', npc: results.npc, category_list: results.category } );
     });
 };
 
@@ -176,7 +176,7 @@ exports.npc_update_get = function(req, res, next) {
                     results.categories[allCategoryIterations].checked='true';
                 }
             }
-            res.render('npc_add', { title: 'Update NPC', npc: results.npc, categories: results.categories, category_list: results.category });
+            res.render('npc_add', { title: 'Update NPC | Elden Ring NPC Guide', npc: results.npc, categories: results.categories, category_list: results.category });
     })
 };
 
@@ -238,7 +238,7 @@ exports.npc_update_post = [
                             list_categories[i].checked = 'true';
                         }
                     }
-                    res.render('npc_add', { title: 'Update NPC', category_list: list_categories, npc: npc, errors: errors.array() })
+                    res.render('npc_add', { title: 'Update NPC | Elden Ring NPC Guide', category_list: list_categories, npc: npc, errors: errors.array() })
                 })
         }
         else {
