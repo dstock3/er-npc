@@ -111,13 +111,18 @@ header {
 }
 
 .npc-list-line {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.766);
+  border-bottom: 2px solid rgb(248, 215, 99);
   width: 100%;
 }
 
 .npc-name {
   font-size: 1.25em;
   margin-bottom: 15px;
+}
+
+.selected a {
+  background-color: rgb(248, 215, 99);
+  color: black;
 }
 
 footer {
@@ -142,6 +147,10 @@ footer {
 
 .npc-head {
   font-size: 1.33em;
+}
+
+.npc-desc {
+  margin-bottom: 15px;
 }
 
 @media only screen and (max-width: 900px) {
