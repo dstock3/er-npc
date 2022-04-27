@@ -17,7 +17,7 @@ exports.npc_list = function(req, res) {
         }
     }, function(err, results) {
         console.log(results.categories)
-        res.render('index', { title: 'Elden Ring NPC Guide', error: err, npc_list: results.npcs, category_list: results.categories });
+        res.render('index', { title: 'NPC Guide', error: err, npc_list: results.npcs, category_list: results.categories });
     });
 };
 
