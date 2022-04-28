@@ -24,7 +24,7 @@ const cat_controller = require('../controllers/categoryController');
 router.get('/create', npc_controller.npc_create_get);
 
 // POST request for creating an NPC.
-router.post('/create', npc_controller.npc_create_post);
+router.post('/create', upload.single('image'), npc_controller.npc_create_post);
 
 // GET request to delete NPC.
 router.get('/:id/delete', npc_controller.npc_delete_get);
@@ -36,7 +36,7 @@ router.post('/:id/delete', npc_controller.npc_delete_post);
 router.get('/:id/update', npc_controller.npc_update_get);
 
 // POST request to update NPC.
-router.post('/:id/update', npc_controller.npc_update_post);
+router.post('/:id/update', upload.single('image'), npc_controller.npc_update_post);
 
 // GET request for one NPC.
 router.get('/:id', npc_controller.npc_detail);
