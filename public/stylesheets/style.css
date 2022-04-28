@@ -149,6 +149,7 @@ header {
   min-height: fit-content;
   padding: 15px;
   align-self: center;
+  margin-bottom: 15px;
 }
 
 footer {
@@ -214,6 +215,20 @@ footer {
   margin-bottom: 15px;
 }
 
+.npc-detail-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.npc-img-container {
+  width: 25%;
+  margin-left: 25px;
+}
+
+.npc-pic {
+  max-width: 300px;
+}
+
 @media only screen and (max-width: 900px) {
   header {
     flex-direction: column;
@@ -267,5 +282,32 @@ footer {
     width: 85%;
     align-self: center;
   }
+
+  .npc-detail-container {
+    flex-direction: column;
+  }
+
+  .npc-detail-bottom {
+    display: flex;
+    justify-content: center;
+  }
+
+  .npc-img-container {
+    width: 100%;
+    margin-left: unset;
+    order: 0;
+    margin-bottom: 15px;
+  }
+
+  .npc-detail-subcontainer {
+    order: 1;
+  }
+
+  .npc-pic {
+    width: 100%;
+    max-width: unset
+  }
+
+  
 
 }
