@@ -125,6 +125,32 @@ header {
   color: black;
 }
 
+.npc-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.npc-head {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 2%;
+  margin-bottom: 15px;
+}
+
+.npc-detail > div {
+  margin-inline: 5%;
+  margin-bottom: 15px;
+}
+
+.npc-page-quote {
+  border: 1px solid white;
+  border-radius: 5px;
+  min-height: fit-content;
+  padding: 15px;
+  align-self: center;
+}
+
 footer {
   min-height: 10vh;
   display: flex;
@@ -150,6 +176,41 @@ footer {
 }
 
 .npc-desc {
+  margin-bottom: 15px;
+}
+
+.npc-control-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.npc-detail-subcontainer > div {
+  margin-bottom: 15px;
+}
+
+.npc-page-loc {
+  margin-top: 15px;
+}
+
+.update-npc {
+  margin-left: 15px;
+}
+
+.delete-npc {
+  margin-right: 15px;
+}
+
+.npc-page-notes-head {
+  border-bottom: 1px dotted white;
+  font-size: 1.25em;
+  font-style: italic;
+  padding-bottom: 5px;
   margin-bottom: 15px;
 }
 

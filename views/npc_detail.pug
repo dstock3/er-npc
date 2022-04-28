@@ -2,17 +2,16 @@ extends layout
 
 block content
   section(class="npc-detail")
-    h2(class="npc-head") #{npc.name}
-    div(class="npc-page=desc") #{npc.desc}
-    div(class="npc-page-cat-container") 
-      a(href=npc.category.url) #{npc.category.name}
-    div(class="location-container")
-        h3 Location:
-        div #{npc.loc}
-    div(class="npc-page-quote") "#{npc.quote}"
-    div(class="npc-page-notes") #{npc.notes}
+    div(class="npc-detail-subcontainer")
+      h2(class="npc-head") #{npc.name} 
+      div(class="npc-page-quote") "#{npc.quote}"
+      div(class="npc-page-desc") #{npc.desc}
+      a(href=npc.category.url class="npc-page-cat") #{npc.category.name}
+      div(class="npc-page-loc") Location: #{npc.loc}
+      h3(class="npc-page-notes-head") Notes: 
+      div(class="npc-page-notes") #{npc.notes}
     div(class="npc-control-container")
-      a(href="/npc/" + npc._id + "/update") Update NPC
-      a(href="/npc/" + npc._id + "/delete") Delete NPC
+      a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
+      a(href="/npc/" + npc._id + "/delete" class="delete-npc") Delete NPC
       
   
