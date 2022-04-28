@@ -25,13 +25,14 @@ exports.npc_list = function(req, res) {
 exports.npc_detail = function(req, res) {
     async.parallel({
         npc: function(callback) {
-            NPC.findById(req.params.id, 'name desc category loc quote notes')
+            NPC.findById(req.params.id, 'name desc category loc quote notes image')
                 .populate('name')
                 .populate('desc')
                 .populate('category')
                 .populate('loc')
                 .populate('quote')
                 .populate('notes')
+                .populate('image')
                 .exec(callback)
         },
         category: function(callback) {
@@ -77,7 +78,8 @@ exports.npc_create_post = [
                 category: req.body.category,
                 loc: req.body.loc,
                 quote: req.body.quote,
-                notes: req.body.notes
+                notes: req.body.notes,
+                image: req.file.originalname
             });
 
             if (!errors.isEmpty()) {
@@ -107,13 +109,14 @@ exports.npc_create_post = [
 exports.npc_delete_get = function(req, res) {
     async.parallel({
         npc: function(callback) {
-            NPC.findById(req.params.id, 'name desc category loc quote notes')
+            NPC.findById(req.params.id, 'name desc category loc quote notes image')
                 .populate('name')
                 .populate('desc')
                 .populate('category')
                 .populate('loc') 
                 .populate('quote')
                 .populate('notes')
+                .populate('image')
                 .exec(callback)
         },
         category: function(callback) {
@@ -147,13 +150,14 @@ exports.npc_delete_post = function(req, res) {
 exports.npc_update_get = function(req, res, next) {
     async.parallel({
         npc: function(callback) {
-            NPC.findById(req.params.id, 'name desc category loc quote notes')
+            NPC.findById(req.params.id, 'name desc category loc quote notes image')
                 .populate('name')
                 .populate('desc')
                 .populate('category')
                 .populate('loc') 
                 .populate('quote')
                 .populate('notes')
+                .populate('image')
                 .exec(callback)
         },
         category: function(callback) {
@@ -200,8 +204,6 @@ exports.npc_update_post = [
     (req, res, next) => {
         let npc
         if (req.file) {
-            imageFilename = req.file.originalname
-
             npc = new NPC({ 
                 name: req.body.name,
                 desc: req.body.desc,
