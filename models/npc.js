@@ -9,7 +9,8 @@ var npcSchema = new Schema(
     category: {type: Schema.Types.ObjectId, ref: 'Category', required: true},
     loc: {type: String, required: true, maxLength: 100},
     quote: {type: String, required: false, maxLength: 280},
-    notes: {type: String, required: false, maxLength: 280}
+    notes: {type: String, required: false, maxLength: 280},
+    image: {type: String, required: false}
   }
 );
 

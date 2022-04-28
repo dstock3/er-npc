@@ -59,7 +59,7 @@ header {
   filter: drop-shadow(7px 7px 7px #000000);
 }
 
-.npc-main, .cat-page, .npc-detail {
+.npc-main, .cat-page, .npc-detail, .npc-form-container, .cat-form-container  {
   width: 80%;
 }
 
@@ -241,7 +241,7 @@ footer {
     margin-right: unset;
   }
 
-  .npc-main, .cat-page, .npc-detail {
+  .npc-main, .cat-page, .npc-detail, .npc-form-container, .cat-form-container {
     width: 90%;
   }
 
