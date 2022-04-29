@@ -59,8 +59,13 @@ header {
   filter: drop-shadow(7px 7px 7px #000000);
 }
 
-.npc-main, .cat-page, .npc-detail, .npc-form-container, .cat-form-container  {
+.cat-page, .npc-detail, .npc-form-container, .cat-form-container  {
   width: 80%;
+}
+
+.npc-main {
+  margin-right: 5%;
+  width: 70%;
 }
 
 .sidebar {
@@ -103,6 +108,23 @@ header {
   color: black;
 }
 
+.npc-item-container {
+  display: flex;
+}
+
+.npc-item-subcontainer {
+  align-self: center;
+}
+
+.npc-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(248, 215, 99);
+  align-self: center;
+  margin-right: 25px;
+}
+
 .npc-item {
   display: flex;
   justify-content: space-between;
@@ -117,7 +139,7 @@ header {
 }
 
 .npc-list-line {
-  border-bottom: 2px solid rgb(248, 215, 99);
+  border-bottom: 2px solid white;
   width: 100%;
 }
 
