@@ -104,10 +104,16 @@ header {
 }
 
 .npc-item {
+  display: flex;
+  justify-content: space-between;
   margin-left: 15px;
   margin-top: 15px;
   margin-bottom: 7px;
-  width: 85%;
+  width: 95%;
+}
+
+.npc-main-pic {
+  width: 200px;
 }
 
 .npc-list-line {
