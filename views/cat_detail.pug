@@ -2,19 +2,27 @@ extends layout
 
 block content
     section(class="cat-page")
+        h2(class="cat-page-title") #{category.name}
         if npc_list
             ul(class="npc-list")
                 for npc in npc_list
                     li(class="npc-item")
-                        div 
-                            a(href=npc.url) #{npc.name}
-                        div #{npc.desc}
-                        div #{npc.category.name}
-                        div #{npc.loc}
-                        div "#{npc.quote}"
-                        div #{npc.notes}
-        div
-            a(href="/npc/cat/" + category._id + "/delete") Delete Category
-        div
-            a(href="/npc/cat/" + category._id + "/update") Update Category
+                        div(class="npc-item-container")
+                            div(class="npc-indicator")
+                            div(class="npc-item-subcontainer")
+                                div(class="npc-name") 
+                                    a(href=npc.url) #{npc.name}
+                                div(class="npc-desc") #{npc.desc}
+                                div(class="npc-main-control-container")
+                                    a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
+                                    a(href="/npc/" + npc._id + "/delete" class="delete-npc") Delete NPC
+                        div(class="npc-main-pic-container")
+                            a(href=npc.url)
+                                img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
+
+                    div(class="npc-list-line")
+        div(class="cat-control-container")
+            a(href="/npc/cat/" + category._id + "/update" class="update-npc") Update Category
+            a(href="/npc/cat/" + category._id + "/delete" class="delete-npc") Delete Category
+            
 
