@@ -10,7 +10,7 @@ var npcSchema = new Schema(
     loc: {type: String, required: true, maxLength: 100},
     quote: {type: String, required: false, maxLength: 280},
     notes: {type: String, required: false, maxLength: 280},
-    image: {type: String, required: false}
+    image: {type: String, required: true}
   }
 );
 

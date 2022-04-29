@@ -1,7 +1,7 @@
 const NPC = require('../models/npc');
 const Category = require('../models/category');
 const async = require('async');
-const { body,validationResult } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 
 // Display list of all NPCs.
 exports.npc_list = function(req, res) {
@@ -68,6 +68,24 @@ exports.npc_create_post = [
         body('desc', 'NPC description must not be empty.').trim().isLength({ min: 1 }).escape(),
         body('category', 'NPC category must not be empty.').trim().isLength({ min: 1 }).escape(),
         body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
+
+        (req, res, next) => {
+            const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
+
+            if(!req.file) {
+                res.json({success: false, message: 'An image is required for this NPC.'})
+            }
+
+            const ext = req.file.mimetype.split('/').pop();
+
+            if (!acceptedFileType.includes(ext)) {
+                res.json({success: false, message: 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp'})
+            }
+
+            if (req.file.size > 25000000) {
+                res.json({success: false, message: 'This image file is too large. Please upload an image smaller than 25 MB.'})
+            }
+        },
 
         (req, res, next) => {
             const errors = validationResult(req);
@@ -202,8 +220,27 @@ exports.npc_update_post = [
     body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
 
     (req, res, next) => {
+        const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
+
+        if(!req.file) {
+            res.json({success: false, message: 'An image is required for this NPC.'})
+        }
+
+        const ext = req.file.mimetype.split('/').pop();
+
+        if (!acceptedFileType.includes(ext)) {
+            res.json({success: false, message: 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp'})
+        }
+
+        if (req.file.size > 25000000) {
+            res.json({success: false, message: 'This image file is too large. Please upload an image smaller than 25 MB.'})
+        }
+    },
+
+    (req, res, next) => {
         let npc
         if (req.file) {
+            console.log(req.file.size)
             npc = new NPC({ 
                 name: req.body.name,
                 desc: req.body.desc,

@@ -13,8 +13,7 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({ 
-  storage: storage,
-  limits: { fileSize: 25000000 } 
+  storage: storage
 })
 
 // Require controller modules.
