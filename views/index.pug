@@ -11,6 +11,9 @@ block content
               div(class="npc-name") 
                 a(href=npc.url) #{npc.name}
               div(class="npc-desc") #{npc.desc}
+              div(class="npc-main-control-container")
+                a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
+                a(href="/npc/" + npc._id + "/delete" class="delete-npc") Delete NPC
           div(class="npc-main-pic-container")
             a(href=npc.url)
               img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
