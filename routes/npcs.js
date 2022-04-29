@@ -12,7 +12,10 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage: storage })
+const upload = multer({ 
+  storage: storage,
+  limits: { fileSize: 25000000 } 
+})
 
 // Require controller modules.
 const npc_controller = require('../controllers/npcController');
