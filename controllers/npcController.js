@@ -71,23 +71,25 @@ exports.npc_create_post = [
 
         (req, res, next) => {
             const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
-
+            const messages = []
+    
             if(!req.file) {
-                res.json({success: false, message: 'An image is required for this NPC.'})
+                let msg = 'An image is required for this NPC.'
+                messages.push(msg)
             }
-
+    
             const ext = req.file.mimetype.split('/').pop();
-
+    
             if (!acceptedFileType.includes(ext)) {
-                res.json({success: false, message: 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp'})
+                let msg = 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp' 
+                messages.push(msg)
             }
-
+    
             if (req.file.size > 25000000) {
-                res.json({success: false, message: 'This image file is too large. Please upload an image smaller than 25 MB.'})
+                let msg = 'This image file is too large. Please upload an image smaller than 25 MB.'
+                messages.push(msg)
             }
-        },
 
-        (req, res, next) => {
             const errors = validationResult(req);
 
             let npc = new NPC({ 
@@ -100,19 +102,18 @@ exports.npc_create_post = [
                 image: req.file.originalname
             });
 
-            if (!errors.isEmpty()) {
+            if ((!errors.isEmpty()) || (messages.length > 0)) {
                 Category.find()
                     .populate('name')
                     .exec(function (err, list_categories) {
                         if (err) { return next(err); }
-                        console.log(npc.category)
     
                         for (let i = 0; i < list_categories.length; i++) {
                             if (JSON.stringify(npc.category).indexOf(list_categories[i]._id) > -1) {
                                 list_categories[i].checked = 'true';
                             }
                         }
-                        res.render('npc_add', { title: "Add New NPC | Elden Ring NPC Guide", category_list: list_categories, npc: npc, errors: errors.array() })
+                        res.render('npc_add', { title: "Add New NPC | Elden Ring NPC Guide", category_list: list_categories, errors: errors.array(), messages: messages })
                     })
             } else {
                 npc.save(function (err) {
@@ -221,52 +222,39 @@ exports.npc_update_post = [
 
     (req, res, next) => {
         const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
+        const messages = []
 
         if(!req.file) {
-            res.json({success: false, message: 'An image is required for this NPC.'})
+            let msg = 'An image is required for this NPC.'
+            messages.push(msg)
         }
 
         const ext = req.file.mimetype.split('/').pop();
 
         if (!acceptedFileType.includes(ext)) {
-            res.json({success: false, message: 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp'})
+            let msg = 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp' 
+            messages.push(msg)
         }
 
         if (req.file.size > 25000000) {
-            res.json({success: false, message: 'This image file is too large. Please upload an image smaller than 25 MB.'})
-        }
-    },
-
-    (req, res, next) => {
-        let npc
-        if (req.file) {
-            console.log(req.file.size)
-            npc = new NPC({ 
-                name: req.body.name,
-                desc: req.body.desc,
-                category: (typeof req.body.category==='undefined') ? [] : req.body.category,
-                loc: req.body.loc,
-                quote: req.body.quote,
-                image: req.file.originalname,
-                notes: req.body.notes,
-                _id:req.params.id 
-            });
-        } else {
-            npc = new NPC({ 
-                name: req.body.name,
-                desc: req.body.desc,
-                category: (typeof req.body.category==='undefined') ? [] : req.body.category,
-                loc: req.body.loc,
-                quote: req.body.quote,
-                notes: req.body.notes,
-                _id:req.params.id 
-            });
-
+            let msg = 'This image file is too large. Please upload an image smaller than 25 MB.'
+            messages.push(msg)
         }
 
         const errors = validationResult(req);
 
-        if (!errors.isEmpty()) {
+        let npc = new NPC({ 
+            name: req.body.name,
+            desc: req.body.desc,
+            category: (typeof req.body.category==='undefined') ? [] : req.body.category,
+            loc: req.body.loc,
+            quote: req.body.quote,
+            image: req.file.originalname,
+            notes: req.body.notes,
+            _id:req.params.id 
+        });
+
+        if (!errors.isEmpty() || messages.length > 0) {
             Category.find()
                 .populate('name')
                 .exec(function (err, list_categories) {
@@ -277,8 +265,8 @@ exports.npc_update_post = [
                             list_categories[i].checked = 'true';
                         }
                     }
-                    res.render('npc_add', { title: 'Update NPC | Elden Ring NPC Guide', category_list: list_categories, npc: npc, errors: errors.array() })
-                })
+                    res.render('npc_add', { title: 'Update NPC | Elden Ring NPC Guide', category_list: list_categories, npc: npc, errors: errors.array(), messages: messages })
+                });
         }
         else {
             NPC.findByIdAndUpdate(req.params.id, npc, {}, function (err,thisnpc) {

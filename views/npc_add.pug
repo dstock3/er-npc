@@ -3,6 +3,9 @@ extends layout
 block content
   div(class="npc-form-container")
     form(method='POST' action='' enctype="multipart/form-data")
+      if messages
+        for msg in messages
+          div(class="error-message") #{msg}
       div(class="form-container")
         if title==="Update NPC"
           div(class="line-item")
