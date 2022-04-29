@@ -52,6 +52,29 @@ exports.npc_create_get = function(req, res, next) {
         })
 };
 
+const validateImage = file => {
+    const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
+    const messages = []
+
+    if(!file) {
+        let msg = 'An image is required for this NPC.'
+        messages.push(msg)
+    }
+
+    const ext = file.mimetype.split('/').pop();
+
+    if (!acceptedFileType.includes(ext)) {
+        let msg = 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp' 
+        messages.push(msg)
+    }
+
+    if (file.size > 25000000) {
+        let msg = 'This image file is too large. Please upload an image smaller than 25 MB.'
+        messages.push(msg)
+    }
+    return messages
+}
+
 // Handle NPC create on POST.
 exports.npc_create_post = [
         (req, res, next) => {
@@ -70,25 +93,7 @@ exports.npc_create_post = [
         body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
 
         (req, res, next) => {
-            const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
-            const messages = []
-    
-            if(!req.file) {
-                let msg = 'An image is required for this NPC.'
-                messages.push(msg)
-            }
-    
-            const ext = req.file.mimetype.split('/').pop();
-    
-            if (!acceptedFileType.includes(ext)) {
-                let msg = 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp' 
-                messages.push(msg)
-            }
-    
-            if (req.file.size > 25000000) {
-                let msg = 'This image file is too large. Please upload an image smaller than 25 MB.'
-                messages.push(msg)
-            }
+            const messages = validateImage(req.file)
 
             const errors = validationResult(req);
 
@@ -221,25 +226,7 @@ exports.npc_update_post = [
     body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
 
     (req, res, next) => {
-        const acceptedFileType = ['jpg', 'png', 'webp', 'jpeg']
-        const messages = []
-
-        if(!req.file) {
-            let msg = 'An image is required for this NPC.'
-            messages.push(msg)
-        }
-
-        const ext = req.file.mimetype.split('/').pop();
-
-        if (!acceptedFileType.includes(ext)) {
-            let msg = 'This image file is not valid. The following file types are accepted: jpg, jpeg, png, webp' 
-            messages.push(msg)
-        }
-
-        if (req.file.size > 25000000) {
-            let msg = 'This image file is too large. Please upload an image smaller than 25 MB.'
-            messages.push(msg)
-        }
+        const messages = validateImage(req.file)
 
         const errors = validationResult(req);
 
