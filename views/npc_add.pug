@@ -2,6 +2,7 @@ extends layout
 
 block content
   div(class="npc-form-container")
+    h2(class="form-head") Add a New NPC
     form(method='POST' action='' enctype="multipart/form-data")
       if messages
         for msg in messages
@@ -38,7 +39,7 @@ block content
             div(class="npc-form-subcontainer")
               label(for='notes') Notes:
               input#notes.form-control(type='text' placeholder='Notes' name='notes' value=(undefined===npc ? '' : npc.notes) )
-        div(class="form-main-subcontainer")
+        div(class="form-bottom-subcontainer")
           div.form-group(class="form-group-npc-cat")
             label(class="npc-cat-label") Category:
             div(class="cat-checkbox-container")
