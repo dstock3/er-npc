@@ -10,8 +10,9 @@ block content
           div(class="npc-page-desc") #{npc.desc}
           a(href=npc.category.url class="npc-page-cat") #{npc.category.name}
           div(class="npc-page-loc") Location: #{npc.loc}
-          h3(class="npc-page-notes-head") Notes: 
-          div(class="npc-page-notes") #{npc.notes}
+          if npc.notes
+            h3(class="npc-page-notes-head") Notes: 
+            div(class="npc-page-notes") #{npc.notes}
         if npc.image
           div(class="npc-img-container")
             img(class="npc-pic" alt="pic of " + npc.name src='/images/' + npc.image)
