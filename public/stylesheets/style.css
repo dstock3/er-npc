@@ -410,6 +410,14 @@ label {
     width: unset;
   }
 
+  .cat-control-container {
+    width: 95%;
+    margin-left: unset;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
   .social-container {
     width: 40%;
   }
@@ -421,6 +429,11 @@ label {
   .npc-control-container {
     width: 85%;
     align-self: center;
+  }
+
+  .npc-list-line {
+    width: 90%;
+    margin: auto;
   }
 
   .npc-detail-container {
