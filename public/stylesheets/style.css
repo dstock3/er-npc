@@ -397,9 +397,6 @@ label {
 
   .npc-main, .cat-page, .npc-detail, .cat-form-container {
     width: 90%;
-  }
-
-  .npc-main {
     margin-right: unset;
   }
 
@@ -480,6 +477,12 @@ label {
 
   .npc-main-pic {
     width: 90%;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-left: unset;
+    margin-bottom: 15px;
   }
 
   
