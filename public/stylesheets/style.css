@@ -330,6 +330,10 @@ label {
   margin-right: 15px;
 }
 
+.form-main-subcontainer input {
+  width: 95%;
+}
+
 .form-group-npc-cat {
   display: flex;
   flex-direction: column;
@@ -369,6 +373,11 @@ label {
   margin-top: 15px;
   margin-left: 80%;
   width: 100px;
+}
+
+.image-prompt {
+  margin-top: 15px;
+  margin-left: 15px;
 }
 
 @media only screen and (max-width: 900px) {
@@ -504,11 +513,4 @@ label {
     margin-left: unset;
     margin-bottom: 15px;
   }
-
-  .form-main-subcontainer input {
-    width: 95%;
-  }
-
-  
-
 }
