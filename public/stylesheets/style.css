@@ -352,13 +352,17 @@ label {
 
 .form-group-npc-img-upload {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   margin: auto;
   border: 1px solid white;
   border-radius: 5px;
   width: 100%;
   margin-top: 15px;
   padding-block: 15px;
+}
+
+.upload-image-label {
+  margin-left: 25px;
 }
 
 .submit-btn {
@@ -460,6 +464,10 @@ label {
     max-width: unset
   }
 
+  .form-group-npc-name {
+    margin-right: unset;
+  }
+
   .npc-form-container {
     margin-right: unset;
     width: 85%;
@@ -495,6 +503,10 @@ label {
     width: 100%;
     margin-left: unset;
     margin-bottom: 15px;
+  }
+
+  .form-main-subcontainer input {
+    width: 95%;
   }
 
   
