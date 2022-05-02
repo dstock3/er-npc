@@ -120,6 +120,7 @@ header {
 
 .npc-item-subcontainer {
   align-self: center;
+  margin-right: 5%;
 }
 
 .npc-main-control-container {
@@ -133,12 +134,10 @@ header {
 }
 
 .npc-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: rgb(248, 215, 99);
+  width: 75px;
+  height: 75px;
   align-self: center;
-  margin-right: 25px;
+  margin-right: 15px;
 }
 
 .npc-item {
