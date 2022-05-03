@@ -161,6 +161,7 @@ header {
 .npc-name {
   font-size: 1.25em;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .selected a {
@@ -221,6 +222,11 @@ footer {
 
 .npc-desc {
   margin-bottom: 15px;
+}
+
+.npc-main-control-container {
+  width: 85%;
+  margin: auto;
 }
 
 .npc-control-container {
@@ -503,10 +509,17 @@ label {
     height: 0;
   }
 
+  .npc-item-subcontainer {
+    width: 100%;
+    margin-right: unset;
+  }
+
   .npc-item {
+    width: 100%;
     flex-direction: column;
     align-items: center;
     margin-right: unset;
+    margin-left: unset;
   }
 
   .npc-main-pic-container {
@@ -516,7 +529,7 @@ label {
   }
 
   .npc-main-pic {
-    width: 90%;
+    width: 250px;
   }
 
   .upload-image {
