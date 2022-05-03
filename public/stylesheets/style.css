@@ -365,7 +365,14 @@ label {
   padding-block: 15px;
 }
 
+.upload-image-input {
+  margin: auto;
+
+}
+
 .upload-image-label {
+  display: flex;
+  align-items: center;
   margin-left: 25px;
 }
 
@@ -378,6 +385,10 @@ label {
 .image-prompt {
   margin-top: 15px;
   margin-left: 15px;
+}
+
+.upload-image {
+  margin-left: 15%;
 }
 
 @media only screen and (max-width: 900px) {
@@ -506,6 +517,10 @@ label {
 
   .npc-main-pic {
     width: 90%;
+  }
+
+  .upload-image {
+    margin-left: 5%;
   }
 
   .submit-btn {
