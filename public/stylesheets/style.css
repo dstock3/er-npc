@@ -150,7 +150,7 @@ header {
 }
 
 .npc-main-pic {
-  width: 200px;
+  width: 300px;
 }
 
 .npc-list-line {
@@ -161,7 +161,6 @@ header {
 .npc-name {
   font-size: 1.25em;
   margin-bottom: 15px;
-  text-align: center;
 }
 
 .selected a {
@@ -221,12 +220,8 @@ footer {
 }
 
 .npc-desc {
-  margin-bottom: 15px;
-}
-
-.npc-main-control-container {
   width: 85%;
-  margin: auto;
+  margin-bottom: 15px;
 }
 
 .npc-control-container {
@@ -485,9 +480,18 @@ label {
     order: 1;
   }
 
+  .npc-name {
+    text-align: center;
+  }
+  
   .npc-pic {
     width: 100%;
     max-width: unset
+  }
+
+  .npc-desc {
+    margin: auto;
+    margin-bottom: 15px;
   }
 
   .form-group-npc-name {
@@ -540,5 +544,10 @@ label {
     width: 100%;
     margin-left: unset;
     margin-bottom: 15px;
+  }
+
+  .npc-main-control-container {
+    width: 85%;
+    margin: auto;
   }
 }
