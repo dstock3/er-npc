@@ -2,17 +2,19 @@ extends layout
 
 block content
   div(class="cat-form-container")
+    h2(class="form-head") Add a New Category
     if title==='Update Category' && npcs.length > 0
       p(class="cat-msg warning") The following NPCs will be updated.
       ul
         for npc in npcs
           li 
             a(href=npc.url) #{npc.name}
-    form(method='POST' action='')
-        label(for='name') Category Name:
-        input#name.form-control(type='text' placeholder='Category Name' name='name' required='true' value=(undefined===cat ? '' : cat.name) )
+    form(method='POST' action='' class="cat-form")
+        div(class="npc-form-subcontainer cat-form-sub")
+          label(for='name') Category Name:
+          input#name.form-control(type='text' placeholder='Category Name' name='name' required='true' value=(undefined===cat ? '' : cat.name) )
         
-        button(class="submit-btn" type='submit') Submit
+        button(class="cat-submit-btn" type='submit') Submit
     if errors
       ul
         for error in errors

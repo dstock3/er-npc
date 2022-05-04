@@ -10,7 +10,7 @@ block content
       div(class="form-container")
         if title==="Update NPC"
           div(class="line-item")
-              h2(class="npc-head") #{npc.name}
+              h3(class="npc-head") #{npc.name}
               if npc.image
                   div(class="npc-img-container")
                       img(class="npc-pic" alt="pic of " + npc.name src='/images/' + npc.image)

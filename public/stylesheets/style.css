@@ -63,10 +63,16 @@ header {
   width: 80%;
 }
 
-.npc-form-container {
+.npc-form-container, .cat-form-container {
   width: fit-content;
   padding-inline: 15px;
   margin-right: 20%;
+  height: fit-content;
+}
+
+.cat-form-container {
+  margin-right: 30%;
+  padding-inline: 5%;
 }
 
 .npc-main, .cat-page {
@@ -150,7 +156,7 @@ header {
 }
 
 .npc-main-pic {
-  width: 300px;
+  width: 250px;
 }
 
 .npc-list-line {
@@ -392,6 +398,29 @@ label {
   margin-left: 15%;
 }
 
+.cat-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-submit-btn {
+  margin-top: 15px;
+}
+
+.cat-form-sub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cat-form-sub label {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-bottom: 15px;
+}
+
 @media only screen and (max-width: 900px) {
   header {
     flex-direction: column;
@@ -498,7 +527,7 @@ label {
     margin-right: unset;
   }
 
-  .npc-form-container {
+  .npc-form-container, .cat-form-container {
     margin-right: unset;
     width: 85%;
   }
