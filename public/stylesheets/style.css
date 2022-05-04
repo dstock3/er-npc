@@ -446,6 +446,7 @@ button {
     flex-direction: column;
     align-items: center;
     margin-right: unset;
+    justify-content: unset;
   }
 
   .npc-main, .cat-page, .npc-detail, .cat-form-container {
@@ -578,5 +579,13 @@ button {
   .npc-main-control-container {
     width: 85%;
     margin: auto;
+  }
+
+  .cat-form-sub {
+    flex-direction: row;
+  }
+
+  .cat-form-sub label {
+    margin-bottom: unset;
   }
 }
