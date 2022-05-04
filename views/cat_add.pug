@@ -3,12 +3,14 @@ extends layout
 block content
   div(class="cat-form-container")
     h2(class="form-head") Add a New Category
-    if title==='Update Category' && npcs.length > 0
+    if title==='Update Category | Elden Ring NPC Guide' && npcs.length > 0
       p(class="cat-msg warning") The following NPCs will be updated.
-      ul
+      ul(class="cat-update-npc-list") 
         for npc in npcs
-          li 
+          li(class="cat-update-npc-item")
             a(href=npc.url) #{npc.name}
+    if title==='Update Category | Elden Ring NPC Guide' && npcs.length === 0
+      p(class="cat-msg") There are no NPCs associated with this category.
     form(method='POST' action='' class="cat-form")
         div(class="npc-form-subcontainer cat-form-sub")
           label(for='name') Category Name:

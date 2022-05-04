@@ -417,8 +417,24 @@ label {
   margin-bottom: 10px;
 }
 
+.cat-msg {
+  margin-bottom: 15px;
+}
+
 button {
   margin-bottom: 15px;
+}
+
+.cat-update-npc-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  margin-bottom: 15px;
+}
+
+.cat-update-npc-item {
+  margin-bottom: 5px;
 }
 
 @media only screen and (max-width: 900px) {
