@@ -159,6 +159,10 @@ header {
   width: 250px;
 }
 
+.npc-list {
+  margin-bottom: 15px;
+}
+
 .npc-list-line {
   border-bottom: 2px solid white;
   width: 100%;
@@ -249,9 +253,9 @@ footer {
   height: 50px;
   border: 1px solid white;
   border-radius: 5px;
-  margin-top: 15px;
-  margin-left: 15px;
+  margin: auto;
   margin-bottom: 15px;
+
 }
 
 .npc-detail-subcontainer > div {
@@ -483,9 +487,9 @@ button {
   .cat-control-container {
     width: 95%;
     margin-left: unset;
-    margin: auto;
     margin-top: 15px;
     margin-bottom: 15px;
+
   }
 
   .social-container {
