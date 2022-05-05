@@ -441,6 +441,23 @@ button {
   margin-bottom: 5px;
 }
 
+.npc-delete {
+  border: 1px solid white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.control-delete-page {
+  justify-content: center;
+}
+
+.control-delete-page .update-npc {
+  margin-left: unset;
+}
+
 @media only screen and (max-width: 900px) {
   header {
     flex-direction: column;
@@ -607,5 +624,21 @@ button {
 
   .cat-form-sub label {
     margin-bottom: unset;
+  }
+
+  .confirm-delete {
+    margin-bottom: 15px;
+    width: 75%;
+  }
+
+  .npc-delete .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .confirm-delete-btn {
+    width: 90%;
   }
 }

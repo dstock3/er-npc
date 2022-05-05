@@ -17,7 +17,7 @@ block content
           div(class="npc-img-container")
             img(class="npc-pic" alt="pic of " + npc.name src='/images/' + npc.image)
     div(class="npc-detail-bottom")
-      div(class="npc-control-container")
+      div(class="npc-control-container control-delete-page")
         a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
 
     form(method='POST' action='' class="npc-delete")
