@@ -227,7 +227,7 @@ exports.npc_update_post = [
 
     (req, res, next) => {
         const errors = validationResult(req);
-        let messages
+        let messages = []
 
         let npc 
         if (req.file) {
@@ -244,21 +244,15 @@ exports.npc_update_post = [
                 _id:req.params.id 
             });
         } else {
-            NPC.findById(req.params.id, 'image')
-                .populate('image')
-                .exec(function(err, results) {
-                    if (err) { return next(err); }
-                    npc = new NPC({ 
-                        name: req.body.name,
-                        desc: req.body.desc,
-                        category: (typeof req.body.category==='undefined') ? [] : req.body.category,
-                        loc: req.body.loc,
-                        quote: req.body.quote,
-                        image: results.image,
-                        notes: req.body.notes,
-                        _id:req.params.id 
-                    });
-                })
+            npc = new NPC({ 
+                name: req.body.name,
+                desc: req.body.desc,
+                category: (typeof req.body.category==='undefined') ? [] : req.body.category,
+                loc: req.body.loc,
+                quote: req.body.quote,
+                notes: req.body.notes,
+                _id:req.params.id 
+            });
         }
 
         if (!errors.isEmpty() || messages.length > 0) {
