@@ -226,20 +226,40 @@ exports.npc_update_post = [
     body('loc', 'NPC location must not be empty.').trim().isLength({ min: 1 }).escape(),
 
     (req, res, next) => {
-        const messages = validateImage(req.file)
-
         const errors = validationResult(req);
+        let messages
 
-        let npc = new NPC({ 
-            name: req.body.name,
-            desc: req.body.desc,
-            category: (typeof req.body.category==='undefined') ? [] : req.body.category,
-            loc: req.body.loc,
-            quote: req.body.quote,
-            image: req.file.originalname,
-            notes: req.body.notes,
-            _id:req.params.id 
-        });
+        let npc 
+        if (req.file) {
+            messages = validateImage(req.file)
+
+            npc = new NPC({ 
+                name: req.body.name,
+                desc: req.body.desc,
+                category: (typeof req.body.category==='undefined') ? [] : req.body.category,
+                loc: req.body.loc,
+                quote: req.body.quote,
+                image: req.file.originalname,
+                notes: req.body.notes,
+                _id:req.params.id 
+            });
+        } else {
+            NPC.findById(req.params.id, 'image')
+                .populate('image')
+                .exec(function(err, results) {
+                    if (err) { return next(err); }
+                    npc = new NPC({ 
+                        name: req.body.name,
+                        desc: req.body.desc,
+                        category: (typeof req.body.category==='undefined') ? [] : req.body.category,
+                        loc: req.body.loc,
+                        quote: req.body.quote,
+                        image: results.image,
+                        notes: req.body.notes,
+                        _id:req.params.id 
+                    });
+                })
+        }
 
         if (!errors.isEmpty() || messages.length > 0) {
             Category.find()
