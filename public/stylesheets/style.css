@@ -254,7 +254,7 @@ footer {
   border: 1px solid white;
   border-radius: 5px;
   margin: auto;
-  margin-bottom: 15px;
+  margin-top: 15px;
 
 }
 
@@ -512,7 +512,7 @@ button {
   }
 
   .cat-control-container {
-    width: 100%;
+    width: 85%;
     margin-top: 15px;
     margin-bottom: 15px;
   }
