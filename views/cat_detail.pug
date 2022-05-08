@@ -2,10 +2,11 @@ extends layout
 
 block content
     section(class="cat-page")
-        h2(class="cat-page-title") #{category.name}
-        div(class="cat-control-container")
-            a(href="/npc/cat/" + category._id + "/update" class="update-npc") Update Category
-            a(href="/npc/cat/" + category._id + "/delete" class="delete-npc") Delete Category
+        div(class="cat-head-container")
+            h2(class="cat-page-title") #{category.name}
+            div(class="cat-control-container")
+                a(href="/npc/cat/" + category._id + "/update" class="update-npc") Update Category
+                a(href="/npc/cat/" + category._id + "/delete" class="delete-npc") Delete Category
         if npc_list
             ul(class="npc-list")
                 for npc in npc_list
