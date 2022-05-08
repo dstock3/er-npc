@@ -268,6 +268,9 @@ footer {
 
 .cat-head-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .update-npc {
@@ -303,7 +306,31 @@ footer {
 .cat-page-title {
   font-size: 1.5em;
   text-align: center;
-  margin-top: 25px;
+  margin-top: 10px;
+}
+
+.dec-container {
+  margin-top: 10px;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  width: 98%;
+}
+
+.dec-left {
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  height: 15px;
+  width: 15px;
+
+}
+
+.dec-right {
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  height: 15px;
+  width: 15px;
+
 }
 
 form {
@@ -652,5 +679,9 @@ button {
 
   .confirm-delete-btn {
     width: 90%;
+  }
+
+  .dec-container {
+    width: 95%;
   }
 }
