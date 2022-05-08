@@ -59,6 +59,11 @@ header {
   filter: drop-shadow(7px 7px 7px #000000);
 }
 
+.npc-main {
+  display: flex;
+  flex-direction: column;
+}
+
 .npc-detail, .cat-form-container  {
   width: 80%;
 }
@@ -496,7 +501,11 @@ button {
 .return-to-cat {
   text-align: center;
   margin-bottom: 15px;
+}
 
+.npc-detail-head-container {
+  align-self: center;
+  width: 100%;
 }
 
 @media only screen and (max-width: 900px) {
