@@ -558,10 +558,9 @@ button {
     margin-right: unset;
   }
 
-  .sidebar {
+  .sidebar-container {
     width: 75%;
     margin-left: unset;
-    margin-bottom: 15px;
   }
 
   .cat-container, .control-container {
