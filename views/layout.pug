@@ -15,39 +15,45 @@ html
       h1(class="title") NPC Guide
     main
       div(class="section-container")
-        div(class="sidebar")
-          div(class="cat-container")
-            h2(class="sidebar-head") Categories
-            ul(class="category-list")
-              for cat in category_list
-                if category
-                  if cat.name === category.name
-                    li(class="category-item selected") 
-                      a(href=cat.url) #{cat.name}
-                  else 
+        div(class="sidebar-container")
+          div(class="sidebar")
+            div(class="cat-container")
+              h2(class="sidebar-head") Categories
+              ul(class="category-list")
+                for cat in category_list
+                  if category
+                    if cat.name === category.name
+                      li(class="category-item selected") 
+                        a(href=cat.url) #{cat.name}
+                    else 
+                      li(class="category-item") 
+                        a(href=cat.url) #{cat.name}
+                  else
                     li(class="category-item") 
                       a(href=cat.url) #{cat.name}
+            div(class="control-container")
+              h2(class="sidebar-head") Control Panel
+              ul(class="control-panel")
+                if title === "Add New Category | Elden Ring NPC Guide"
+                  li(class="control-option")
+                    a(href="/npc/create") Add New NPC
+                  li(class="control-option selected")
+                    a(href="/npc/cat/create") Add New Category
+                else if title === "Add New NPC | Elden Ring NPC Guide"
+                  li(class="control-option selected")
+                    a(href="/npc/create") Add New NPC
+                  li(class="control-option")
+                    a(href="/npc/cat/create") Add New Category
                 else
-                  li(class="category-item") 
-                    a(href=cat.url) #{cat.name}
-          div(class="control-container")
-            h2(class="sidebar-head") Control Panel
-            ul(class="control-panel")
-              if title === "Add New Category | Elden Ring NPC Guide"
-                li(class="control-option")
-                  a(href="/npc/create") Add New NPC
-                li(class="control-option selected")
-                  a(href="/npc/cat/create") Add New Category
-              else if title === "Add New NPC | Elden Ring NPC Guide"
-                li(class="control-option selected")
-                  a(href="/npc/create") Add New NPC
-                li(class="control-option")
-                  a(href="/npc/cat/create") Add New Category
-              else
-                li(class="control-option")
-                  a(href="/npc/create") Add New NPC
-                li(class="control-option")
-                  a(href="/npc/cat/create") Add New Category
+                  li(class="control-option")
+                    a(href="/npc/create") Add New NPC
+                  li(class="control-option")
+                    a(href="/npc/cat/create") Add New Category
+          div(class="attr")
+            p The data displayed on this website is from the 
+              span
+                a(target="_blank" rel="noopener noreferrer" href="https://eldenring.wiki.fextralife.com/") Elden Ring Wiki
+              span .
         block content
     footer
       div(class="attr") Created by David Stockdale

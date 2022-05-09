@@ -89,10 +89,27 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 15px;
-  width: 15%;
+  margin-bottom: 15px;
+  width: 100%;
   height: fit-content;
   border-radius: 5px;
+}
+
+.sidebar-container {
+  width: 15%;
+  margin-left: 15px;
+
+}
+
+.attr {
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  filter: drop-shadow(7px 7px 7px #000000);
+}
+
+.attr p {
+  margin-inline: 10px;
+  padding-block: 25px;
 }
 
 .sidebar-head {
