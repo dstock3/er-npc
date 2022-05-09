@@ -13,35 +13,22 @@ block content
         if npc_list
             ul(class="npc-list")
                 each npc, index in npc_list
-                    if index === npc_list.length - 1
-                        li(class="npc-item")
-                            div(class="npc-item-container")
-                                img(src="/images/logo.png" class="npc-indicator")
-                                div(class="npc-item-subcontainer")
-                                    div(class="npc-name") 
-                                        a(href=npc.url) #{npc.name}
-                                    div(class="npc-desc") #{npc.desc}
-                                    div(class="npc-main-control-container")
-                                        a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
-                                        a(href="/npc/" + npc._id + "/delete" class="delete-npc") Delete NPC
-                            div(class="npc-main-pic-container")
-                                a(href=npc.url)
-                                    img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
-                    else
-                        li(class="npc-item")
-                            div(class="npc-item-container")
-                                img(src="/images/logo.png" class="npc-indicator")
-                                div(class="npc-item-subcontainer")
-                                    div(class="npc-name") 
-                                        a(href=npc.url) #{npc.name}
-                                    div(class="npc-desc") #{npc.desc}
-                                    div(class="npc-main-control-container")
-                                        a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
-                                        a(href="/npc/" + npc._id + "/delete" class="delete-npc") Delete NPC
-                            div(class="npc-main-pic-container")
-                                a(href=npc.url)
-                                    img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
+                    li(class="npc-item")
+                        div(class="npc-item-container")
+                            img(src="/images/logo.png" class="npc-indicator")
+                            div(class="npc-item-subcontainer")
+                                div(class="npc-name") 
+                                    a(href=npc.url) #{npc.name}
+                                div(class="npc-desc") #{npc.desc}
+                                div(class="npc-main-control-container")
+                                    a(href="/npc/" + npc._id + "/update" class="update-npc") Update NPC
+                                    a(href="/npc/" + npc._id + "/delete" class="delete-npc") Delete NPC
+                        div(class="npc-main-pic-container")
+                            a(href=npc.url)
+                                img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
+                    if index !== npc_list.length - 1
                         div(class="npc-list-line")
+
 
 
 
