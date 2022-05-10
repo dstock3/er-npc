@@ -4,8 +4,8 @@ block content
     section(class="cat-page")
         div(class="cat-head-container")
             div(class="dec-container")
-                div(class="dec-left")
-                div(class="dec-right")
+                div(class="dec-top-left")
+                div(class="dec-top-right")
             h2(class="cat-page-title") #{category.name}
             div(class="cat-control-container")
                 a(href="/npc/cat/" + category._id + "/update" class="update-npc") Update Category
@@ -28,6 +28,10 @@ block content
                                 img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
                     if index !== npc_list.length - 1
                         div(class="npc-list-line")
+        div(class="cat-bottom-container")
+            div(class="dec-container")
+                div(class="dec-bottom-left")
+                div(class="dec-bottom-right")
 
 
 

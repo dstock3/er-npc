@@ -295,6 +295,13 @@ footer {
   align-items: center;
 }
 
+.cat-bottom-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .update-npc {
   margin-left: 15px;
 }
@@ -333,26 +340,39 @@ footer {
 
 .dec-container {
   margin-top: 10px;
+  margin-bottom: 10px;
   align-self: center;
   display: flex;
   justify-content: space-between;
   width: 98%;
 }
 
-.dec-left {
+.dec-top-left {
   border-top: 1px solid white;
   border-left: 1px solid white;
   height: 15px;
   width: 15px;
-
 }
 
-.dec-right {
+.dec-top-right {
   border-top: 1px solid white;
   border-right: 1px solid white;
   height: 15px;
   width: 15px;
+}
 
+.dec-bottom-right {
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  height: 15px;
+  width: 15px;
+}
+
+.dec-bottom-left {
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+  height: 15px;
+  width: 15px;
 }
 
 form {

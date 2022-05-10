@@ -3,8 +3,8 @@ extends layout
 block content
   section(class="npc-main")
     div(class="dec-container")
-        div(class="dec-left")
-        div(class="dec-right")
+        div(class="dec-top-left")
+        div(class="dec-top-right")
     ul(class="npc-list")
       each npc, index in npc_list
           li(class="npc-item")
@@ -22,6 +22,10 @@ block content
                 img(class="npc-main-pic" alt="pic of " + npc.name src='/images/' + npc.image)
           if index !== npc_list.length - 1
             div(class="npc-list-line")
+    div(class="dec-container")
+      div(class="dec-bottom-left")
+      div(class="dec-bottom-right")
+        
 
           
           
