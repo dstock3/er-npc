@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    div(class="cat-form-container cat-delete")
+    section(class="cat-form-container cat-delete")
         h2(class="form-head") #{category.name}
         if npcs.length > 0
             p(class="cat-msg warning") You must delete the following NPCs before deleting this category.
